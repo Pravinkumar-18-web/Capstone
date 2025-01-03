@@ -169,69 +169,31 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 403)
         self.assertFalse(data['success'])
 
-    # def test_delete_movie(self):
-    #     header_obj = {
-    #         "Authorization": self.auth_headers["Executive Producer"]
-    #     }
-    #     delete_id_movie = 4
-    #     res = self.client().delete(
-    #         f'/movies/{delete_id_movie}',
-    #         headers=header_obj)
-    #     data = json.loads(res.data)
-    #     print(f'{data}')
-    #     self.assertEqual(res.status_code, 200)
-    #     self.assertTrue(data['success'])
-    #     self.assertEqual(data['deleted'], delete_id_movie)
-
-    #     res = self.client().get('/movies', headers=header_obj)
-    #     m_data = json.loads(res.data)
-
-    #     found_deleted = False
-
-    #     for m in m_data["movies"]:
-    #         if m["id"] == delete_id_movie:
-    #             found_deleted = True
-    #             break
-
-    #     self.assertFalse(found_deleted)
     def test_delete_movie(self):
         header_obj = {
             "Authorization": self.auth_headers["Executive Producer"]
         }
-
-        # Step 1: Create a movie to delete later
-        movie_data = {
-            "title": "Test Movie",
-            "release_date": "2024-01-01"
-        }
-        
-        # Create the movie
-        res = self.client().post('/movies', json=movie_data, headers=header_obj)
-        self.assertEqual(res.status_code, 200)
-        self.assertTrue(res.get_json()['success'])
-        
-        # Get the ID of the created movie
-        created_movie_id = res.get_json()['movie']['id']
-
-        # Step 2: Delete the movie
-        res = self.client().delete(f'/movies/{created_movie_id}', headers=header_obj)
+        delete_id_movie = 4
+        res = self.client().delete(
+            f'/movies/{delete_id_movie}',
+            headers=header_obj)
         data = json.loads(res.data)
-        print(f'Delete response: {data}')
+        print(f'{data}')
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data['success'])
-        self.assertEqual(data['deleted'], created_movie_id)
+        self.assertEqual(data['deleted'], delete_id_movie)
 
-        # Step 3: Verify the movie has been deleted
         res = self.client().get('/movies', headers=header_obj)
         m_data = json.loads(res.data)
 
         found_deleted = False
+
         for m in m_data["movies"]:
-            if m["id"] == created_movie_id:
+            if m["id"] == delete_id_movie:
                 found_deleted = True
                 break
 
-        self.assertFalse(found_deleted)  # Ensure the movie is not found
+        self.assertFalse(found_deleted)
 
 
     def test_delete_movie_fail_404(self):
