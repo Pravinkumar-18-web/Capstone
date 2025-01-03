@@ -205,7 +205,7 @@ def create_app(test_config=None):
 
         return jsonify({
             "success": True
-        })
+        }),200
 
     '''
     DELETE /movies/<int:movie_id>

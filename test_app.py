@@ -4,30 +4,33 @@ import json
 from flask_sqlalchemy import SQLAlchemy
 
 from flaskr import create_app
-from models import setup_db, Movie, Actor
+from models import db, Movie, Actor
+
 
 
 class CapstoneTestCase(unittest.TestCase):
-
     def setUp(self):
+        """Executed before each test."""
         self.app = create_app()
         self.client = self.app.test_client
-        self.database_name = "capstone_test"
-        self.database_path = "postgres:///{}".format(self.database_name)
-        setup_db(self.app, self.database_path)
-
-        # binds the app to the current context
-        with self.app.app_context():
-            self.db = SQLAlchemy()
-            self.db.init_app(self.app)
-            # create all tables
-            self.db.create_all()
-
+        self.database_path = os.environ.get('DATABASE_URL_Test', "postgresql://postgres:1898@localhost:5432/capstone_test")
+        # setup_db(self.app, self.database_path)
+        
+        self.app = create_app({
+            "SQLALCHEMY_DATABASE_URI": self.database_path,
+            "SQLALCHEMY_TRACK_MODIFICATIONS": False,
+            "TESTING": True
+        })
+# Configure the database
+        # with self.app.app_context():
+        #     # setup_db(self.app, self.database_path)
+        #     # db.drop_all()  # Ensure a clean slate before tests
+        #     db.create_all()
+        # Test data
         self.movie = {
             "title": "Pek Yakında",
             "release_date": "2020-11-02"
         }
-
         self.actor = {
             "name": "Cem Yılmaz",
             "age": 45,
@@ -39,14 +42,15 @@ class CapstoneTestCase(unittest.TestCase):
         with open('auth_config.json', 'r') as f:
             self.auth = json.loads(f.read())
 
-        assistant_jwt = self.auth["roles"]["Casting Assistant"]["jwt_token"]
-        director_jwt = self.auth["roles"]["Casting Director"]["jwt_token"]
-        producer_jwt = self.auth["roles"]["Executive Producer"]["jwt_token"]
         self.auth_headers = {
-            "Casting Assistant": f'Bearer {assistant_jwt}',
-            "Casting Director": f'Bearer {director_jwt}',
-            "Executive Producer": f'Bearer {producer_jwt}'
+            "Casting Assistant": f'Bearer {self.auth["roles"]["Casting Assistant"]["jwt_token"]}',
+            "Casting Director": f'Bearer {self.auth["roles"]["Casting Director"]["jwt_token"]}',
+            "Executive Producer": f'Bearer {self.auth["roles"]["Executive Producer"]["jwt_token"]}',
         }
+
+        # Bind the app context
+        with self.app.app_context():
+            db.create_all()
 
     def tearDown(self):
         """Executed after reach test"""
@@ -69,7 +73,7 @@ class CapstoneTestCase(unittest.TestCase):
         }
         res = self.client().get('/actors', headers=header_obj)
         data = json.loads(res.data)
-
+        print(f'{data}')
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data['success'])
         self.assertEqual(type(data["actors"]), type([]))
@@ -136,7 +140,7 @@ class CapstoneTestCase(unittest.TestCase):
         res = self.client().post(f'/actors',
                                  json=self.actor, headers=header_obj)
         data = json.loads(res.data)
-
+        print(f'{data}')
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data['success'])
 
@@ -165,31 +169,70 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 403)
         self.assertFalse(data['success'])
 
+    # def test_delete_movie(self):
+    #     header_obj = {
+    #         "Authorization": self.auth_headers["Executive Producer"]
+    #     }
+    #     delete_id_movie = 4
+    #     res = self.client().delete(
+    #         f'/movies/{delete_id_movie}',
+    #         headers=header_obj)
+    #     data = json.loads(res.data)
+    #     print(f'{data}')
+    #     self.assertEqual(res.status_code, 200)
+    #     self.assertTrue(data['success'])
+    #     self.assertEqual(data['deleted'], delete_id_movie)
+
+    #     res = self.client().get('/movies', headers=header_obj)
+    #     m_data = json.loads(res.data)
+
+    #     found_deleted = False
+
+    #     for m in m_data["movies"]:
+    #         if m["id"] == delete_id_movie:
+    #             found_deleted = True
+    #             break
+
+    #     self.assertFalse(found_deleted)
     def test_delete_movie(self):
         header_obj = {
             "Authorization": self.auth_headers["Executive Producer"]
         }
-        delete_id_movie = 1
-        res = self.client().delete(
-            f'/movies/{delete_id_movie}',
-            headers=header_obj)
-        data = json.loads(res.data)
 
+        # Step 1: Create a movie to delete later
+        movie_data = {
+            "title": "Test Movie",
+            "release_date": "2024-01-01"
+        }
+        
+        # Create the movie
+        res = self.client().post('/movies', json=movie_data, headers=header_obj)
+        self.assertEqual(res.status_code, 200)
+        self.assertTrue(res.get_json()['success'])
+        
+        # Get the ID of the created movie
+        created_movie_id = res.get_json()['movie']['id']
+
+        # Step 2: Delete the movie
+        res = self.client().delete(f'/movies/{created_movie_id}', headers=header_obj)
+        data = json.loads(res.data)
+        print(f'Delete response: {data}')
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data['success'])
-        self.assertEqual(data['deleted'], delete_id_movie)
+        self.assertEqual(data['deleted'], created_movie_id)
 
+        # Step 3: Verify the movie has been deleted
         res = self.client().get('/movies', headers=header_obj)
         m_data = json.loads(res.data)
 
         found_deleted = False
-
         for m in m_data["movies"]:
-            if m["id"] == delete_id_movie:
+            if m["id"] == created_movie_id:
                 found_deleted = True
                 break
 
-        self.assertFalse(found_deleted)
+        self.assertFalse(found_deleted)  # Ensure the movie is not found
+
 
     def test_delete_movie_fail_404(self):
         header_obj = {
@@ -222,13 +265,14 @@ class CapstoneTestCase(unittest.TestCase):
             f'/actors/{delete_id_actor}',
             headers=header_obj)
         data = json.loads(res.data)
-
+        print(f'{data}')
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data['success'])
         self.assertEqual(data['deleted'], delete_id_actor)
 
         res = self.client().get('/actors', headers=header_obj)
         a_data = json.loads(res.data)
+        print(f'{a_data}')
 
         found_deleted = False
 
@@ -261,11 +305,11 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 403)
         self.assertFalse(data['success'])
 
-    def test_update_movie(self):
+    def test_update_movie_CD(self):
         header_obj = {
             "Authorization": self.auth_headers["Casting Director"]
         }
-        update_id_movie = 2
+        update_id_movie = 5
         new_title = "Eyvah eyvah 2"
         res = self.client().patch(
             f'/movies/{update_id_movie}',
@@ -279,11 +323,11 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['updated']['id'], update_id_movie)
         self.assertEqual(data['updated']['title'], new_title)
 
-    def test_update_movie(self):
+    def test_update_movie_EP(self):
         header_obj = {
             "Authorization": self.auth_headers["Executive Producer"]
         }
-        update_id_movie = 2
+        update_id_movie = 5
         new_title = "Eyvah eyvah 2"
         res = self.client().patch(
             f'/movies/{update_id_movie}',
@@ -314,7 +358,7 @@ class CapstoneTestCase(unittest.TestCase):
         header_obj = {
             "Authorization": self.auth_headers["Casting Director"]
         }
-        update_id_actor = 2
+        update_id_actor = 5
         new_name = "Tom Hanks"
         new_age = 54
         res = self.client().patch(

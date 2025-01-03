@@ -1,4 +1,3 @@
---
 -- PostgreSQL database dump
 --
 
@@ -17,25 +16,23 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+-- Name: plpgsql; Type: EXTENSION; Schema: -; 
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
-
 --
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; 
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
 
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- Name: actors; Type: TABLE; Schema: public; Owner: kemal
+-- Name: actors; Type: TABLE; Schema: public; 
 --
 
 CREATE TABLE public.actors (
@@ -46,11 +43,8 @@ CREATE TABLE public.actors (
     movie_id integer
 );
 
-
-ALTER TABLE public.actors OWNER TO kemal;
-
 --
--- Name: actors_id_seq; Type: SEQUENCE; Schema: public; Owner: kemal
+-- Name: actors_id_seq; Type: SEQUENCE; Schema: public; 
 --
 
 CREATE SEQUENCE public.actors_id_seq
@@ -61,29 +55,22 @@ CREATE SEQUENCE public.actors_id_seq
     NO MAXVALUE
     CACHE 1;
 
-
-ALTER TABLE public.actors_id_seq OWNER TO kemal;
-
 --
--- Name: actors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: kemal
+-- Name: actors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; 
 --
 
 ALTER SEQUENCE public.actors_id_seq OWNED BY public.actors.id;
 
-
 --
--- Name: alembic_version; Type: TABLE; Schema: public; Owner: kemal
+-- Name: alembic_version; Type: TABLE; Schema: public; 
 --
 
 CREATE TABLE public.alembic_version (
     version_num character varying(32) NOT NULL
 );
 
-
-ALTER TABLE public.alembic_version OWNER TO kemal;
-
 --
--- Name: movies; Type: TABLE; Schema: public; Owner: kemal
+-- Name: movies; Type: TABLE; Schema: public; 
 --
 
 CREATE TABLE public.movies (
@@ -92,11 +79,8 @@ CREATE TABLE public.movies (
     release_date timestamp without time zone
 );
 
-
-ALTER TABLE public.movies OWNER TO kemal;
-
 --
--- Name: movies_id_seq; Type: SEQUENCE; Schema: public; Owner: kemal
+-- Name: movies_id_seq; Type: SEQUENCE; Schema: public; 
 --
 
 CREATE SEQUENCE public.movies_id_seq
@@ -107,32 +91,26 @@ CREATE SEQUENCE public.movies_id_seq
     NO MAXVALUE
     CACHE 1;
 
-
-ALTER TABLE public.movies_id_seq OWNER TO kemal;
-
 --
--- Name: movies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: kemal
+-- Name: movies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; 
 --
 
 ALTER SEQUENCE public.movies_id_seq OWNED BY public.movies.id;
 
-
 --
--- Name: actors id; Type: DEFAULT; Schema: public; Owner: kemal
+-- Name: actors id; Type: DEFAULT; Schema: public; 
 --
 
 ALTER TABLE ONLY public.actors ALTER COLUMN id SET DEFAULT nextval('public.actors_id_seq'::regclass);
 
-
 --
--- Name: movies id; Type: DEFAULT; Schema: public; Owner: kemal
+-- Name: movies id; Type: DEFAULT; Schema: public; 
 --
 
 ALTER TABLE ONLY public.movies ALTER COLUMN id SET DEFAULT nextval('public.movies_id_seq'::regclass);
 
-
 --
--- Data for Name: actors; Type: TABLE DATA; Schema: public; Owner: kemal
+-- Data for Name: actors; Type: TABLE DATA; Schema: public; 
 --
 
 COPY public.actors (id, name, age, gender, movie_id) FROM stdin;
@@ -144,18 +122,16 @@ COPY public.actors (id, name, age, gender, movie_id) FROM stdin;
 5	Julia Roberts	45	F	2
 \.
 
-
 --
--- Data for Name: alembic_version; Type: TABLE DATA; Schema: public; Owner: kemal
+-- Data for Name: alembic_version; Type: TABLE DATA; Schema: public; 
 --
 
 COPY public.alembic_version (version_num) FROM stdin;
 35291c8315b4
 \.
 
-
 --
--- Data for Name: movies; Type: TABLE DATA; Schema: public; Owner: kemal
+-- Data for Name: movies; Type: TABLE DATA; Schema: public; 
 --
 
 COPY public.movies (id, title, release_date) FROM stdin;
@@ -166,54 +142,51 @@ COPY public.movies (id, title, release_date) FROM stdin;
 1	Eyvah eyvah 2	2016-05-04 00:00:00
 \.
 
-
 --
--- Name: actors_id_seq; Type: SEQUENCE SET; Schema: public; Owner: kemal
+-- Name: actors_id_seq; Type: SEQUENCE SET; Schema: public; 
 --
 
 SELECT pg_catalog.setval('public.actors_id_seq', 6, true);
 
-
 --
--- Name: movies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: kemal
+-- Name: movies_id_seq; Type: SEQUENCE SET; Schema: public; 
 --
 
 SELECT pg_catalog.setval('public.movies_id_seq', 5, true);
 
-
 --
--- Name: actors actors_pkey; Type: CONSTRAINT; Schema: public; Owner: kemal
+-- Name: actors actors_pkey; Type: CONSTRAINT; Schema: public; 
 --
 
 ALTER TABLE ONLY public.actors
     ADD CONSTRAINT actors_pkey PRIMARY KEY (id);
 
-
 --
--- Name: alembic_version alembic_version_pkc; Type: CONSTRAINT; Schema: public; Owner: kemal
+-- Name: alembic_version alembic_version_pkc; Type: CONSTRAINT; Schema: public; 
 --
 
 ALTER TABLE ONLY public.alembic_version
     ADD CONSTRAINT alembic_version_pkc PRIMARY KEY (version_num);
 
-
 --
--- Name: movies movies_pkey; Type: CONSTRAINT; Schema: public; Owner: kemal
+-- Name: movies movies_pkey; Type: CONSTRAINT; Schema: public; 
 --
 
 ALTER TABLE ONLY public.movies
     ADD CONSTRAINT movies_pkey PRIMARY KEY (id);
 
-
 --
--- Name: actors actors_movie_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: kemal
+-- Name: actors actors_movie_id_fkey; Type: FK CONSTRAINT; Schema: public; 
 --
 
 ALTER TABLE ONLY public.actors
     ADD CONSTRAINT actors_movie_id_fkey FOREIGN KEY (movie_id) REFERENCES public.movies(id);
 
+SELECT * FROM public.movies;
+SELECT * FROM public.actors;
+SELECT current_database();
+
 
 --
 -- PostgreSQL database dump complete
 --
-
