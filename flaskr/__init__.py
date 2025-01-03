@@ -175,7 +175,8 @@ def create_app(test_config=None):
         --data-raw '{
             "name": "Cem Yılmaz",
             "age": "45",
-            "gender": "M"
+            "gender": "M",
+            "movie_id": 1
         }'
 
     Example Response:
