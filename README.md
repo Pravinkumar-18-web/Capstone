@@ -312,7 +312,8 @@ The API will return three error types when requests fail:
 		--data-raw '{
 			"name": "Cem Yılmaz",
 			"age": "45",
-			"gender": "M"
+			"gender": "M",
+                        "movie_id": 1
         }'
     ```
     
