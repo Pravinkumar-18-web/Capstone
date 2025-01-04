@@ -27,6 +27,14 @@ def create_app(test_config=None):
             'GET,PUT,POST,DELETE,OPTIONS')
         return response
 
+
+    @app.route('/')
+    def welcome():
+        return jsonify({
+            "success": True,
+            "message": "Welcome to the Casting Agency Application! Enjoy browsing movies and actors data."
+        })
+
     '''
     GET /movies
     Get all movies
