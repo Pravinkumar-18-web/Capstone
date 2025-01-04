@@ -1,0 +1,302 @@
+{
+	"info": {
+		"_postman_id": "c1d2c344-1ab4-43aa-9925-c26ee4302b50",
+		"name": "udacity-capstone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "40124450"
+	},
+	"item": [
+		{
+			"name": "Executive producer",
+			"item": [
+				{
+					"name": "/movies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2Nzc2Y2JiZjUwMGE4MDEyNGM1MGJkM2EiLCJhdWQiOiJjYXBzdG9uZSIsImlhdCI6MTczNTg0NTk5MywiZXhwIjoxNzM1ODUzMTkzLCJzY29wZSI6IiIsImF6cCI6IkRkSGpsRVZYNUpoemdvUzF2UlVBYW15bmY4ZTR6R1RXIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9ycyIsImRlbGV0ZTptb3ZpZXMiLCJwb3N0OmFjdG9ycyIsInBvc3Q6bW92aWVzIiwidXBkYXRlOmFjdG9ycyIsInVwZGF0ZTptb3ZpZXMiLCJ2aWV3OmFjdG9ycyIsInZpZXc6bW92aWVzIl19.i4xwJlmuh_G07nAakOFkTKq0qvZcWTTW5usL606hR5Pq3UMv2mzwbEhrCQ_Q9i8dUe4lFf04ZH74VqeO__bRd_p2WkHR4FTGThpZlAxUvM9sHlYEXAV-i_255_2JHIt8wJz7BI3NsIh3HRRcMEu7uJ0kGJbBGxynPpxVC0h5f_ai6-0HUs0UB0PVwZVD2INTIFin_gK7wVObFn9E7pCCJhAF5X_qC2BCNE5TfehzJdz4arFjTolH9VG7opzHlb7IvTAho9whczvRQ2ky2i-X8D4mxzD5IrR5awI9MezPWsKUs0IjDr4annkKfepxa0CDAPnWhMQ_RA1JrzJttHmy3w"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/movies"
+					},
+					"response": []
+				},
+				{
+					"name": "/actors",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "/movies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2Nzc2Y2JiZjUwMGE4MDEyNGM1MGJkM2EiLCJhdWQiOiJjYXBzdG9uZSIsImlhdCI6MTczNTg0NTk5MywiZXhwIjoxNzM1ODUzMTkzLCJzY29wZSI6IiIsImF6cCI6IkRkSGpsRVZYNUpoemdvUzF2UlVBYW15bmY4ZTR6R1RXIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9ycyIsImRlbGV0ZTptb3ZpZXMiLCJwb3N0OmFjdG9ycyIsInBvc3Q6bW92aWVzIiwidXBkYXRlOmFjdG9ycyIsInVwZGF0ZTptb3ZpZXMiLCJ2aWV3OmFjdG9ycyIsInZpZXc6bW92aWVzIl19.i4xwJlmuh_G07nAakOFkTKq0qvZcWTTW5usL606hR5Pq3UMv2mzwbEhrCQ_Q9i8dUe4lFf04ZH74VqeO__bRd_p2WkHR4FTGThpZlAxUvM9sHlYEXAV-i_255_2JHIt8wJz7BI3NsIh3HRRcMEu7uJ0kGJbBGxynPpxVC0h5f_ai6-0HUs0UB0PVwZVD2INTIFin_gK7wVObFn9E7pCCJhAF5X_qC2BCNE5TfehzJdz4arFjTolH9VG7opzHlb7IvTAho9whczvRQ2ky2i-X8D4mxzD5IrR5awI9MezPWsKUs0IjDr4annkKfepxa0CDAPnWhMQ_RA1JrzJttHmy3w"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Pek Yakında\",\r\n    \"release_date\": \"19-02-2020\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/movies"
+					},
+					"response": []
+				},
+				{
+					"name": "/actors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2Nzc2Y2JiZjUwMGE4MDEyNGM1MGJkM2EiLCJhdWQiOiJjYXBzdG9uZSIsImlhdCI6MTczNTkyNDEyMywiZXhwIjoxNzM1OTMxMzIzLCJzY29wZSI6IiIsImF6cCI6IkRkSGpsRVZYNUpoemdvUzF2UlVBYW15bmY4ZTR6R1RXIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9ycyIsImRlbGV0ZTptb3ZpZXMiLCJwb3N0OmFjdG9ycyIsInBvc3Q6bW92aWVzIiwidXBkYXRlOmFjdG9ycyIsInVwZGF0ZTptb3ZpZXMiLCJ2aWV3OmFjdG9ycyIsInZpZXc6bW92aWVzIl19.kuVJAHClY2Pnasb7NFGiNa4gF5W6G7z6ElDpY1n0Es2Ndq0tADtTz2Ukfa4Wo67l6udrxpJJH3AstNKQ3vt5gtFA-RkbIkW8QK76FBysWd3DZW95giysXhiNzZhOJZaadyt-dpZv9XhnonJEKcX1BoJk4g41PqJxCZCEJhQVGvMq7v9r2Y1eFzlt9brSPYTR0feSMMoMtj965VWnspMT9PPdeXEZDrKJZ41Rso1Yn-plPok22oXPxZQGqD-u9hnHBsAkb41aoIcpQ_185beErJ09Mp3MW1rMrSD4qJ20XMSI8oC5JZGTR_OqvG0IilR2iOAVISTCqffe0kW72J2lDg"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Cem Yılmaz\",\r\n    \"age\": \"45\",\r\n    \"gender\": \"M\",\r\n    \"movie_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/actors"
+					},
+					"response": []
+				},
+				{
+					"name": "/movies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2Nzc2Y2JiZjUwMGE4MDEyNGM1MGJkM2EiLCJhdWQiOiJjYXBzdG9uZSIsImlhdCI6MTczNTg0NTk5MywiZXhwIjoxNzM1ODUzMTkzLCJzY29wZSI6IiIsImF6cCI6IkRkSGpsRVZYNUpoemdvUzF2UlVBYW15bmY4ZTR6R1RXIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9ycyIsImRlbGV0ZTptb3ZpZXMiLCJwb3N0OmFjdG9ycyIsInBvc3Q6bW92aWVzIiwidXBkYXRlOmFjdG9ycyIsInVwZGF0ZTptb3ZpZXMiLCJ2aWV3OmFjdG9ycyIsInZpZXc6bW92aWVzIl19.i4xwJlmuh_G07nAakOFkTKq0qvZcWTTW5usL606hR5Pq3UMv2mzwbEhrCQ_Q9i8dUe4lFf04ZH74VqeO__bRd_p2WkHR4FTGThpZlAxUvM9sHlYEXAV-i_255_2JHIt8wJz7BI3NsIh3HRRcMEu7uJ0kGJbBGxynPpxVC0h5f_ai6-0HUs0UB0PVwZVD2INTIFin_gK7wVObFn9E7pCCJhAF5X_qC2BCNE5TfehzJdz4arFjTolH9VG7opzHlb7IvTAho9whczvRQ2ky2i-X8D4mxzD5IrR5awI9MezPWsKUs0IjDr4annkKfepxa0CDAPnWhMQ_RA1JrzJttHmy3w"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:5000/movies/1"
+					},
+					"response": []
+				},
+				{
+					"name": "/actors",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:5000/actors/1"
+					},
+					"response": []
+				},
+				{
+					"name": "/movies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2Nzc2Y2JiZjUwMGE4MDEyNGM1MGJkM2EiLCJhdWQiOiJjYXBzdG9uZSIsImlhdCI6MTczNTg0NTk5MywiZXhwIjoxNzM1ODUzMTkzLCJzY29wZSI6IiIsImF6cCI6IkRkSGpsRVZYNUpoemdvUzF2UlVBYW15bmY4ZTR6R1RXIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9ycyIsImRlbGV0ZTptb3ZpZXMiLCJwb3N0OmFjdG9ycyIsInBvc3Q6bW92aWVzIiwidXBkYXRlOmFjdG9ycyIsInVwZGF0ZTptb3ZpZXMiLCJ2aWV3OmFjdG9ycyIsInZpZXc6bW92aWVzIl19.i4xwJlmuh_G07nAakOFkTKq0qvZcWTTW5usL606hR5Pq3UMv2mzwbEhrCQ_Q9i8dUe4lFf04ZH74VqeO__bRd_p2WkHR4FTGThpZlAxUvM9sHlYEXAV-i_255_2JHIt8wJz7BI3NsIh3HRRcMEu7uJ0kGJbBGxynPpxVC0h5f_ai6-0HUs0UB0PVwZVD2INTIFin_gK7wVObFn9E7pCCJhAF5X_qC2BCNE5TfehzJdz4arFjTolH9VG7opzHlb7IvTAho9whczvRQ2ky2i-X8D4mxzD5IrR5awI9MezPWsKUs0IjDr4annkKfepxa0CDAPnWhMQ_RA1JrzJttHmy3w"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Eyvah eyvah 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/movies/2"
+					},
+					"response": []
+				},
+				{
+					"name": "/actors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2Nzc2Y2JiZjUwMGE4MDEyNGM1MGJkM2EiLCJhdWQiOiJjYXBzdG9uZSIsImlhdCI6MTczNTg0NTk5MywiZXhwIjoxNzM1ODUzMTkzLCJzY29wZSI6IiIsImF6cCI6IkRkSGpsRVZYNUpoemdvUzF2UlVBYW15bmY4ZTR6R1RXIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9ycyIsImRlbGV0ZTptb3ZpZXMiLCJwb3N0OmFjdG9ycyIsInBvc3Q6bW92aWVzIiwidXBkYXRlOmFjdG9ycyIsInVwZGF0ZTptb3ZpZXMiLCJ2aWV3OmFjdG9ycyIsInZpZXc6bW92aWVzIl19.i4xwJlmuh_G07nAakOFkTKq0qvZcWTTW5usL606hR5Pq3UMv2mzwbEhrCQ_Q9i8dUe4lFf04ZH74VqeO__bRd_p2WkHR4FTGThpZlAxUvM9sHlYEXAV-i_255_2JHIt8wJz7BI3NsIh3HRRcMEu7uJ0kGJbBGxynPpxVC0h5f_ai6-0HUs0UB0PVwZVD2INTIFin_gK7wVObFn9E7pCCJhAF5X_qC2BCNE5TfehzJdz4arFjTolH9VG7opzHlb7IvTAho9whczvRQ2ky2i-X8D4mxzD5IrR5awI9MezPWsKUs0IjDr4annkKfepxa0CDAPnWhMQ_RA1JrzJttHmy3w"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Tom Hanks\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/actors/2"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Casting Director",
+			"item": [
+				{
+					"name": "/movies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2Nzc2Y2JiZjUwMGE4MDEyNGM1MGJkM2EiLCJhdWQiOiJjYXBzdG9uZSIsImlhdCI6MTczNTg0NTk5MywiZXhwIjoxNzM1ODUzMTkzLCJzY29wZSI6IiIsImF6cCI6IkRkSGpsRVZYNUpoemdvUzF2UlVBYW15bmY4ZTR6R1RXIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9ycyIsImRlbGV0ZTptb3ZpZXMiLCJwb3N0OmFjdG9ycyIsInBvc3Q6bW92aWVzIiwidXBkYXRlOmFjdG9ycyIsInVwZGF0ZTptb3ZpZXMiLCJ2aWV3OmFjdG9ycyIsInZpZXc6bW92aWVzIl19.i4xwJlmuh_G07nAakOFkTKq0qvZcWTTW5usL606hR5Pq3UMv2mzwbEhrCQ_Q9i8dUe4lFf04ZH74VqeO__bRd_p2WkHR4FTGThpZlAxUvM9sHlYEXAV-i_255_2JHIt8wJz7BI3NsIh3HRRcMEu7uJ0kGJbBGxynPpxVC0h5f_ai6-0HUs0UB0PVwZVD2INTIFin_gK7wVObFn9E7pCCJhAF5X_qC2BCNE5TfehzJdz4arFjTolH9VG7opzHlb7IvTAho9whczvRQ2ky2i-X8D4mxzD5IrR5awI9MezPWsKUs0IjDr4annkKfepxa0CDAPnWhMQ_RA1JrzJttHmy3w"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/movies"
+					},
+					"response": []
+				},
+				{
+					"name": "/actors",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "/actors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2Nzc2Y2I3OTQzZTFmNmI3MGM1ZTY2NTEiLCJhdWQiOiJjYXBzdG9uZSIsImlhdCI6MTczNTkyMzk2NywiZXhwIjoxNzM1OTMxMTY3LCJzY29wZSI6IiIsImF6cCI6IkRkSGpsRVZYNUpoemdvUzF2UlVBYW15bmY4ZTR6R1RXIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9ycyIsInBvc3Q6YWN0b3JzIiwidXBkYXRlOmFjdG9ycyIsInVwZGF0ZTptb3ZpZXMiLCJ2aWV3OmFjdG9ycyIsInZpZXc6bW92aWVzIl19.dcSg6nBRWkgwfiqlSJSHmFdHNG0LaRD5ez6ofO06TKZ5-y0VXNymoaKtEuWHsxAuZskkyIY_ADhg0B80QHlU6RJR1bCNdpZ27V4NbmAHnmId346QtFJr6rUeYh3N9kCVAZGKuQB-uOaILAPaBiaMkcKVEOrxiRbxG6tfASRRnF9p-n1BMenvWdpdrRKAkeNEGkng--wcHtbaeIy4hA28sD_-9oJPkfxJBzrbYDlTfn7nL2yri4YuQjQzPMT3laQVvADyfsXqHH8LHyTco9n_xjVlb3CJR8xcyEzeQOobuXN9Oyhnz0dXLt52RPxanoT8GgyxLvj62w1V22vdZbhhhg"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Cem Yılmaz\",\r\n    \"age\": \"45\",\r\n    \"gender\": \"M\",\r\n    \"movie_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/actors"
+					},
+					"response": []
+				},
+				{
+					"name": "/actors",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:5000/actors/1"
+					},
+					"response": []
+				},
+				{
+					"name": "/movies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2Nzc2Y2JiZjUwMGE4MDEyNGM1MGJkM2EiLCJhdWQiOiJjYXBzdG9uZSIsImlhdCI6MTczNTg0NTk5MywiZXhwIjoxNzM1ODUzMTkzLCJzY29wZSI6IiIsImF6cCI6IkRkSGpsRVZYNUpoemdvUzF2UlVBYW15bmY4ZTR6R1RXIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9ycyIsImRlbGV0ZTptb3ZpZXMiLCJwb3N0OmFjdG9ycyIsInBvc3Q6bW92aWVzIiwidXBkYXRlOmFjdG9ycyIsInVwZGF0ZTptb3ZpZXMiLCJ2aWV3OmFjdG9ycyIsInZpZXc6bW92aWVzIl19.i4xwJlmuh_G07nAakOFkTKq0qvZcWTTW5usL606hR5Pq3UMv2mzwbEhrCQ_Q9i8dUe4lFf04ZH74VqeO__bRd_p2WkHR4FTGThpZlAxUvM9sHlYEXAV-i_255_2JHIt8wJz7BI3NsIh3HRRcMEu7uJ0kGJbBGxynPpxVC0h5f_ai6-0HUs0UB0PVwZVD2INTIFin_gK7wVObFn9E7pCCJhAF5X_qC2BCNE5TfehzJdz4arFjTolH9VG7opzHlb7IvTAho9whczvRQ2ky2i-X8D4mxzD5IrR5awI9MezPWsKUs0IjDr4annkKfepxa0CDAPnWhMQ_RA1JrzJttHmy3w"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Eyvah eyvah 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/movies/2"
+					},
+					"response": []
+				},
+				{
+					"name": "/actors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2Nzc2Y2JiZjUwMGE4MDEyNGM1MGJkM2EiLCJhdWQiOiJjYXBzdG9uZSIsImlhdCI6MTczNTg0NTk5MywiZXhwIjoxNzM1ODUzMTkzLCJzY29wZSI6IiIsImF6cCI6IkRkSGpsRVZYNUpoemdvUzF2UlVBYW15bmY4ZTR6R1RXIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9ycyIsImRlbGV0ZTptb3ZpZXMiLCJwb3N0OmFjdG9ycyIsInBvc3Q6bW92aWVzIiwidXBkYXRlOmFjdG9ycyIsInVwZGF0ZTptb3ZpZXMiLCJ2aWV3OmFjdG9ycyIsInZpZXc6bW92aWVzIl19.i4xwJlmuh_G07nAakOFkTKq0qvZcWTTW5usL606hR5Pq3UMv2mzwbEhrCQ_Q9i8dUe4lFf04ZH74VqeO__bRd_p2WkHR4FTGThpZlAxUvM9sHlYEXAV-i_255_2JHIt8wJz7BI3NsIh3HRRcMEu7uJ0kGJbBGxynPpxVC0h5f_ai6-0HUs0UB0PVwZVD2INTIFin_gK7wVObFn9E7pCCJhAF5X_qC2BCNE5TfehzJdz4arFjTolH9VG7opzHlb7IvTAho9whczvRQ2ky2i-X8D4mxzD5IrR5awI9MezPWsKUs0IjDr4annkKfepxa0CDAPnWhMQ_RA1JrzJttHmy3w"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Tom Hanks\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/actors/2"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Casting Assistant",
+			"item": [
+				{
+					"name": "/movies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2Nzc2YzkxZjBhZjgxNjQ5NDg1ZGJmYTQiLCJhdWQiOiJjYXBzdG9uZSIsImlhdCI6MTczNTkyMzU2NywiZXhwIjoxNzM1OTMwNzY3LCJzY29wZSI6IiIsImF6cCI6IkRkSGpsRVZYNUpoemdvUzF2UlVBYW15bmY4ZTR6R1RXIiwicGVybWlzc2lvbnMiOlsidmlldzphY3RvcnMiLCJ2aWV3Om1vdmllcyJdfQ.DpKj2q77zS9XuOmV5ey9xjuCwqUbEjTukW8tiR40f3NkNUn8q_VmVqVb6tCBNq1f32-n4YgH2tHblsyM9LGPOPlG6_mb3KSwYnIPk6PV1eGdaiSuHvELlCYS2ujmLqAgMDZbaNw72ak9zjr0C_iu7B31Dls0PLJIf71ufzGKHvV9JGOLW0IqcVzCwDMOjRA8iAbwC3fx5zULb6GsCn9_qQ9OLAEXFJI4iawtX7UOqV829leVAM93JBY1DwgF1XL11odekmjyFk_gfPud_tgJED52um_9pIymz60d-nYrZlL8Uye5ggMjBJQx-l9HPYFHlw1V5vv8t5gHippmUPzyPw"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/movies"
+					},
+					"response": []
+				},
+				{
+					"name": "/actors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2Nzc2YzkxZjBhZjgxNjQ5NDg1ZGJmYTQiLCJhdWQiOiJjYXBzdG9uZSIsImlhdCI6MTczNTkyMzU2NywiZXhwIjoxNzM1OTMwNzY3LCJzY29wZSI6IiIsImF6cCI6IkRkSGpsRVZYNUpoemdvUzF2UlVBYW15bmY4ZTR6R1RXIiwicGVybWlzc2lvbnMiOlsidmlldzphY3RvcnMiLCJ2aWV3Om1vdmllcyJdfQ.DpKj2q77zS9XuOmV5ey9xjuCwqUbEjTukW8tiR40f3NkNUn8q_VmVqVb6tCBNq1f32-n4YgH2tHblsyM9LGPOPlG6_mb3KSwYnIPk6PV1eGdaiSuHvELlCYS2ujmLqAgMDZbaNw72ak9zjr0C_iu7B31Dls0PLJIf71ufzGKHvV9JGOLW0IqcVzCwDMOjRA8iAbwC3fx5zULb6GsCn9_qQ9OLAEXFJI4iawtX7UOqV829leVAM93JBY1DwgF1XL11odekmjyFk_gfPud_tgJED52um_9pIymz60d-nYrZlL8Uye5ggMjBJQx-l9HPYFHlw1V5vv8t5gHippmUPzyPw"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/actors"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

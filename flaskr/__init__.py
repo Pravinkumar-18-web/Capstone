@@ -184,6 +184,29 @@ def create_app(test_config=None):
         "success": true
     }
     '''
+    # @app.route('/actors', methods=['POST'])
+    # @requires_auth('post:actors')
+    # def create_actor(payload):
+    #     body = request.get_json()
+
+    #     if body is None:
+    #         abort(400)
+
+    #     name = body.get('name', None)
+    #     age = body.get('age', None)
+    #     gender = body.get('gender', None)
+    #     movie_id = body.get('movie_id', None)
+
+    #     if name is None or age is None or gender is None or movie_id is None:
+    #         abort(400, "Missing field for Actor")
+
+    #     actor = Actor(name=name, age=age, gender=gender, movie_id=movie_id)
+
+    #     actor.insert()
+
+    #     return jsonify({
+    #         "success": True
+    #     }),200
     @app.route('/actors', methods=['POST'])
     @requires_auth('post:actors')
     def create_actor(payload):
@@ -202,11 +225,20 @@ def create_app(test_config=None):
 
         actor = Actor(name=name, age=age, gender=gender, movie_id=movie_id)
 
+        # Insert the actor into the database
         actor.insert()
 
+        # Assuming the insert method sets the ID of the actor
         return jsonify({
-            "success": True
-        }),200
+            "success": True,
+            "created": { "id": actor.id,  # Return the created actor's ID
+                "name": actor.name,
+                "age": actor.age,
+                "gender": actor.gender,
+                "movie_id": actor.movie_id
+            }
+        }), 201  # Use 201 status code for resource creation
+
 
     '''
     DELETE /movies/<int:movie_id>
