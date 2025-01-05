@@ -114,12 +114,14 @@ ALTER TABLE ONLY public.movies ALTER COLUMN id SET DEFAULT nextval('public.movie
 --
 
 COPY public.actors (id, name, age, gender, movie_id) FROM stdin;
-6	Cem Yılmaz	45	M	1
-1	Tom Hanks	54	M	2
-2	Brad Pitt	44	M	3
-3	Scarlett Johansson	35	F	3
-4	Robert Downey, Jr.	45	M	2
-5	Julia Roberts	45	F	2
+6	Tom Crusize	60	M	1
+1	Peter park	45	M	2
+2	Thalapathy vijay	50	M	3
+3	Ajith kumar	51	M	3
+4	Ranjini	65	M	2
+5	Sivakarthikeyan	40	M	2
+8	nayanthara	38	F	2	
+7   samantha 38 F	1  
 \.
 
 --
@@ -127,7 +129,7 @@ COPY public.actors (id, name, age, gender, movie_id) FROM stdin;
 --
 
 COPY public.alembic_version (version_num) FROM stdin;
-35291c8315b4
+7bce976g657a
 \.
 
 --
@@ -135,18 +137,18 @@ COPY public.alembic_version (version_num) FROM stdin;
 --
 
 COPY public.movies (id, title, release_date) FROM stdin;
-2	Yahşi Batı	2012-05-04 00:00:00
-3	The Avengers	2010-05-14 00:00:00
-4	The Martian	2019-09-11 00:00:00
-5	Pek Yakında	2020-02-19 00:00:00
-1	Eyvah eyvah 2	2016-05-04 00:00:00
+2	The Robot	2012-05-04 00:00:00
+3	GOAT	2010-05-14 00:00:00
+4	AMARAN	2019-09-11 00:00:00
+5	HUNTER	2020-02-19 00:00:00
+1	ARANMANAI 3	2016-05-04 00:00:00
 \.
 
 --
 -- Name: actors_id_seq; Type: SEQUENCE SET; Schema: public; 
 --
 
-SELECT pg_catalog.setval('public.actors_id_seq', 6, true);
+SELECT pg_catalog.setval('public.actors_id_seq', 8, true);
 
 --
 -- Name: movies_id_seq; Type: SEQUENCE SET; Schema: public; 

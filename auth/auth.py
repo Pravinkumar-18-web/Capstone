@@ -6,41 +6,40 @@ from urllib.request import urlopen
 import os
 
 
-"""
-https://fsnd-kml.auth0.com/authorize?audience=capstone&response_type=token&client_id=QgmGth71OqndSVlCJ6YIAFir6t2EAt48&redirect_uri=http://localhost:8100/login-results
-https://fsnd-kml.auth0.com/.well-known/jwks.json
-"""
-
 AUTH0_DOMAIN = os.environ['AUTH0_DOMAIN']
 ALGORITHMS = [os.environ['ALGORITHMS']]
 API_AUDIENCE = os.environ['API_AUDIENCE']
 
 # AuthError Exception
-'''
-AuthError Exception
-A standardized way to communicate auth failure modes
-'''
-
+# A standardized way to handle and communicate authentication and authorization errors.
 
 class AuthError(Exception):
+    """
+    Custom exception for authentication errors.
+
+    Attributes:
+        error (dict): Error details including a code and description.
+        status_code (int): HTTP status code associated with the error.
+    """
     def __init__(self, error, status_code):
         self.error = error
         self.status_code = status_code
 
-
-# Auth Header
-
-'''
-@TODO implement get_token_auth_header() method
-    it should attempt to get the header from the request
-        it should raise an AuthError if no header is present
-    it should attempt to split bearer and the token
-        it should raise an AuthError if the header is malformed
-    return the token part of the header
-'''
-
+# Get Token Auth Header
+# Extracts and validates the authorization token from the request header.
 
 def get_token_auth_header():
+    """
+    Extracts the token from the Authorization header.
+
+    Process:
+        - Ensures the Authorization header is present.
+        - Validates the header format as 'Bearer <token>'.
+        - Returns the token if valid.
+
+    Raises:
+        AuthError: If the header is missing, malformed, or the token is absent.
+    """
     auth = request.headers.get('Authorization', None)
     if not auth:
         raise AuthError({
@@ -71,21 +70,25 @@ def get_token_auth_header():
     return token
 
 
-'''
-@TODO implement check_permissions(permission, payload) method
-    @INPUTS
-        permission: string permission (i.e. 'post:actors')
-        payload: decoded jwt payload
-
-    it should raise an AuthError if permissions are not included in the payload
-        !!NOTE check your RBAC settings in Auth0
-    it should raise an AuthError if the requested permission string
-    is not in the payload permissions array
-    return true otherwise
-'''
-
+# Check Permissions
+# Validates that the required permission exists in the JWT payload.
 
 def check_permissions(permission, payload):
+    """
+    Ensures the user has the necessary permission.
+
+    Args:
+        permission (str): The required permission string (e.g., 'post:actors').
+        payload (dict): The decoded JWT payload.
+
+    Process:
+        - Checks if 'permissions' exist in the payload.
+        - Validates the required permission against the payload's permissions list.
+        - Returns True if valid.
+
+    Raises:
+        AuthError: If the permissions claim is missing or the required permission is not found.
+    """
     if 'permissions' not in payload:
         raise AuthError({
             'code': 'invalid_claims',
@@ -100,23 +103,28 @@ def check_permissions(permission, payload):
     return True
 
 
-'''
-@TODO implement verify_decode_jwt(token) method
-    @INPUTS
-        token: a json web token (string)
-
-    it should be an Auth0 token with key id (kid)
-    it should verify the token using Auth0 /.well-known/jwks.json
-    it should decode the payload from the token
-    it should validate the claims
-    return the decoded payload
-
-    !!NOTE urlopen has a common certificate error described here:
-    https://stackoverflow.com/questions/50236117/scraping-ssl-certificate-verify-failed-error-for-http-en-wikipedia-org
-'''
-
+# Verify and Decode JWT
+# Verifies and decodes a JSON Web Token (JWT) using Auth0's JSON Web Key Set (JWKS).
 
 def verify_decode_jwt(token):
+    """
+    Verifies and decodes the JWT token using Auth0.
+
+    Args:
+        token (str): The JWT token to verify.
+
+    Process:
+        - Fetches the JWKS from the Auth0 domain.
+        - Extracts the token's header and validates the key ID (kid).
+        - Uses the appropriate RSA key to verify the token's signature.
+        - Decodes the token and validates its claims (audience and issuer).
+
+    Returns:
+        dict: Decoded JWT payload.
+
+    Raises:
+        AuthError: For invalid headers, expired tokens, incorrect claims, or any other verification issues.
+    """
     jsonurl = urlopen(f'https://{AUTH0_DOMAIN}/.well-known/jwks.json')
     jwks = json.loads(jsonurl.read())
     unverified_header = jwt.get_unverified_header(token)
@@ -173,21 +181,28 @@ def verify_decode_jwt(token):
     }, 400)
 
 
-'''
-@TODO implement @requires_auth(permission) decorator method
-    @INPUTS
-        permission: string permission (i.e. 'post:actors')
-
-    it should use the get_token_auth_header method to get the token
-    it should use the verify_decode_jwt method to decode the jwt
-    it should use the check_permissions method validate claims
-    and check the requested permission
-    return the decorator which passes the decoded payload
-    to the decorated method
-'''
-
+# Requires Authorization
+# A decorator to enforce authentication and authorization for protected routes.
 
 def requires_auth(permission=''):
+    """
+    Decorator to enforce authentication and authorization.
+
+    Args:
+        permission (str): The required permission string (e.g., 'post:actors').
+
+    Process:
+        - Retrieves the token using get_token_auth_header().
+        - Verifies and decodes the token using verify_decode_jwt().
+        - Validates the required permission using check_permissions().
+        - Passes the decoded payload to the decorated function.
+
+    Returns:
+        function: The decorated function with validated payload passed as an argument.
+
+    Raises:
+        AuthError: For missing tokens, invalid permissions, or JWT verification issues.
+    """
     def requires_auth_decorator(f):
         @wraps(f)
         def wrapper(*args, **kwargs):

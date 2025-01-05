@@ -3,14 +3,8 @@ from sqlalchemy import ForeignKey, Column, String, Integer, \
                     DateTime, create_engine
 from sqlalchemy.orm import relationship
 from flask_sqlalchemy import SQLAlchemy
-import json
-import os
 from flask_migrate import Migrate
 
-# database_name = "capstone"
-# # database_path = "postgres://{}/{}".format('localhost:5432', database_name)
-# database_path = "postgres:///{}".format(database_name)
-# database_path = os.environ['DATABASE_URL']
 database_path = os.environ['DATABASE_URL']
 if database_path.startswith("postgres://"):
   database_path = database_path.replace("postgres://", "postgresql://", 1)
@@ -33,10 +27,8 @@ def setup_db(app, database_path=database_path):
 
 
 '''
-Movie
+table : Movie
 '''
-
-
 class Movie(db.Model):
 
     __tablename__ = 'movies'
@@ -70,10 +62,8 @@ class Movie(db.Model):
         }
 
 '''
-Actor
+Table :- Actor
 '''
-
-
 class Actor(db.Model):
 
     __tablename__ = 'actors'

@@ -2,20 +2,9 @@
 Udacity Full-Stack Web Developer Nanodegree Program Capstone Project
 
 ## Project Motivation
-The Casting Agency Project models a company that is responsible for creating movies and managing and assigning actors to those movies. You are an Executive Producer within the company and are creating a system to simplify and streamline your process. 
-
+The Casting Agency Project models a company that is responsible for creating movies and managing and assigning actors to those movies. 
 
 This project is simply a workspace for practicing and showcasing different set of skills related with web development. These include data modelling, API design, authentication and authorization and cloud deployment.
-
-## Getting Started
-
-The project adheres to the PEP 8 style guide and follows common best practices, including:
-
-* Variable and function names are clear.
-* Endpoints are logically named.
-* Code is commented appropriately.
-* Secrets are stored as environment variables.
-
 
 ### Key Dependencies & Platforms
 
@@ -36,7 +25,7 @@ The project adheres to the PEP 8 style guide and follows common best practices, 
 
 #### Installing Dependencies
 
-##### Python 3.7
+##### Python 3.9
 
 Follow instructions to install the latest version of python for your platform in the [python docs](https://docs.python.org/3/using/unix.html#getting-and-installing-the-latest-version-of-python)
 
@@ -53,11 +42,11 @@ pip install -r requirements.txt
 This will install all of the required packages we selected within the `requirements.txt` file.
 
 #### Database Setup
-With Postgres running, restore a database using the `capstone.psql` file provided. In terminal run:
+With Postgres running, restore a database using the `capstone_run.psql` file provided. In terminal run:
 
 ```bash
 createdb capstone
-psql capstone < capstone.psql
+psql capstone < capstone_run.psql
 ```
 
 #### Running Tests
@@ -65,11 +54,9 @@ To run the tests, run
 ```bash
 dropdb capstone_test
 createdb capstone_test
-psql capstone_test < capstone.psql
+psql capstone_test < capstone_run.psql
 python test_app.py
 ```
-
-Optionally, you can use `run_test.sh` script.
 
 #### Auth0 Setup
 
@@ -80,7 +67,7 @@ Environment variables needed: (setup.sh)
 ```bash
 export AUTH0_DOMAIN="xxxxxxxxxx.auth0.com" # Choose your tenant domain
 export ALGORITHMS="RS256"
-export API_AUDIENCE="capstone" # Create an API in Auth0
+export API_AUDIENCE="xxxxxxxxx" # Create an API in Auth0
 ```
 
 ##### Roles
@@ -144,9 +131,13 @@ postgresql://[user[:password]@][netloc][:port][/dbname][?param1=value1&...]
 ```
 For more details [look at the documentation (31.1.1.2. Connection URIs)](https://www.postgresql.org/docs/9.3/libpq-connect.html)
 
-4. Setup the environment variables for Auth0 under `setup.sh` running:
+4. Setup the environment variables for Auth0 under `datasetup.sh/datasetup.bat` running:
 	```bash
-	source ./setup.sh 
+	source ./datasetup.sh 
+	```
+	or
+    ```cmd
+	datasetup.bat 
 	```
 5.  To run the server locally, execute:
 
@@ -156,8 +147,6 @@ For more details [look at the documentation (31.1.1.2. Connection URIs)](https:/
     export FLASK_ENVIRONMENT=debug
     flask run --reload
     ```
-
-    Optionally, you can use `run.sh` script.
 
 ## API Documentation
 
